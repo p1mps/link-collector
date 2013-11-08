@@ -1,0 +1,12 @@
+{
+    "name": "links-collector",
+    "description": "Links collector app",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "*",
+        "mongodb": "*",
+        "mongoose": "*",
+        "path": "*"
+    }
+}
