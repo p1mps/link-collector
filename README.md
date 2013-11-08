@@ -1,4 +1,4 @@
-backbone-fundamentals-es3
+link-collector
 =========================
 
-complete exercise 3 of backbone-fundamentals's book
+Some experiments with node, mongodb, expressjs and handlebarjs to build a demo app that collects links
