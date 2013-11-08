@@ -38,19 +38,28 @@
                 </div>
             </form>
 
-            <div class="col-sm-8">
                 <script id="linkTemplate" type="text/template">
-                <a target = "_blank"
-                href = "<%=url%>"
-                class = "lead col-sm-8" > <%= url %> </a>
-          
-              <p class="lead col-sm-8"><%= description %></p> <button id="delete"
-                type = "button"
-                class = "btn btn-danger" > Delete </button>
-             
-                </script>
+                
 
-            </div>
+           
+                <a target="_blank"
+                href = "<%=url%>"
+                class="lead col-sm-8" > <%= url %> </a>
+            <p  class="col-sm-8">
+             <%= description %>
+              </p>
+              <!--
+              <div class="col-sm-8">
+              
+              <button id="delete"
+                type = "button"
+                class = "btn btn-danger"> Delete </button>
+                 </div>
+              -->      
+                  
+                 </script>
+
+           
 
         </div>
     </div>
