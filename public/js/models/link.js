@@ -8,5 +8,20 @@ app.Link = Backbone.Model.extend({
         url: '',
         description: ''
     },
-    idAttribute: '_id'
+    idAttribute: '_id',
+
+    validation: {
+
+        url: {
+            required: true,
+            pattern: 'url',
+            msg: 'Please enter a url'
+        },
+
+        description: {
+            required: true
+        }
+
+    }
+
 });

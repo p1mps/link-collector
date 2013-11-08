@@ -9,6 +9,7 @@ app.LinkView = Backbone.View.extend({
     events: {
         'click #delete': 'deleteLink'
     },
+
     deleteLink: function() {
         // Delete model
         this.model.destroy();
@@ -17,7 +18,11 @@ app.LinkView = Backbone.View.extend({
     },
 
     render: function() {
-        this.$el.html(this.template(this.model.toJSON()));
+        Backbone.Validation.bind(this);
+        if (this.model.isValid(true)) {
+            this.$el.html(this.template(this.model.toJSON()));
+        } else
+            alert('invalid url or description!');
         return this;
     }
 

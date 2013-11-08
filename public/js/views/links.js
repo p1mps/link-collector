@@ -9,6 +9,8 @@ app.LinksView = Backbone.View.extend({
         this.collection.fetch();
         this.render();
         this.listenTo(this.collection, 'add', this.renderLink);
+        Backbone.Validation.bind(this);
+
     },
 
     events: {
@@ -17,6 +19,7 @@ app.LinksView = Backbone.View.extend({
 
     addLink: function(e) {
         e.preventDefault();
+
         var formData = {};
         $('.form-horizontal div').children('input').each(function(i, el) {
             if ($(el).val() != '') {
@@ -31,11 +34,13 @@ app.LinksView = Backbone.View.extend({
         });
 
 
-        var Link = new app.Link(formData);
+        var link = new app.Link(formData);
+
         //alert(JSON.stringify(Link));
-        this.collection.add(Link);
+        this.collection.add(link);
         // Saving the collection 
         this.collection.each(function(model) {
+
             model.save();
         });
     },
