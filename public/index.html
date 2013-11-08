@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+	<title>Links collector</title>
+  <link rel="stylesheet" href="/css/screen.css"> 
+ <link href="/vendor/bower/bootstrap/dist/css/bootstrap.css" rel="stylesheet" media="screen">
+</head>
+
+<body>
+   <div class="container">
+	<div id="links">
+
+ <div class="jumbotron">
+  <h1>Insert any link you want!</h1>
+  </div>
+	<form class="form-horizontal" role="form">
+  <div class="form-group">
+    <label for="url" class="col-sm-2 control-label">Link</label>
+    <div class="col-sm-8">
+      <input type="text" class="form-control" id="url" placeholder="Insert the link..."/>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="description" class="col-sm-2 control-label">Description</label>
+    <div class="col-sm-8">
+      <textarea type="text" class="form-control" id="description" placeholder="Insert the description..."></textarea>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button id="add" type="button" class="btn btn-success">Add</button>
+    </div>
+  
+  </div>
+
+</form>
+<script id="linkTemplate" type="text/template">
+  
+    
+      <a target="_blank" href="<%=url%>" class="lead col-sm-8" ><%= url %></a>
+  
+      <p class="lead col-sm-8"><%= description %></p>  
+     <button id="delete" type="button" class="btn btn-danger">Delete</button>
+  </div>
+  </script>
+ 
+  
+</div>
+  <script src="/vendor/bower/jquery/jquery.min.js"></script>
+	<script src="/vendor/bower/underscore/underscore-min.js"></script>
+	<script src="/vendor/bower/backbone/backbone-min.js"></script>
+	<script src="/js/models/link.js"></script>
+	<script src="/js/collections/links.js"></script>
+	<script src="/js/views/link.js"></script>
+	<script src="/js/views/links.js"></script>
+	<script src="/js/app.js"></script>
+
+</body>
+</html>
+
