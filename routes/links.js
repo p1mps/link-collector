@@ -31,47 +31,59 @@ function linksAPI(server) {
 
     // API GET Get a list of all links
     server.get('/api/links', function(request, response) {
-        return LinkModel.find(function(err, links) {
-            if (err) throw err;
-            return response.send(links);
+        LinkModel.find(function(err, links) {
+            if (err) {
+                response.send(404);
+                throw err;
+            }
+            response.send(links);
         });
     });
 
 
     // API POST Insert a new link
-    server.post('/api/links', function(request, response) {
+    server.post('/api/link', function(request, response) {
         var link = new LinkModel({
             url: request.body.url,
             description: request.body.description
         });
         link.save(function(err) {
-            if (err) throw err;
+            if (err) {
+                response.send(404);
+                throw err;
+            }
             console.log('created');
-            return response.send(link);
+            response.send(link);
         });
     });
 
     // API GET by ID Get a single link by id
     server.get('/api/links/:id', function(request, response) {
-        return LinkModel.findById(request.params.id, function(err, link) {
-            if (err) throw err;
-            return response.send(link);
+        LinkModel.findById(request.params.id, function(err, link) {
+            if (err) {
+                response.send(404);
+                throw err;
+            }
+            response.send(link);
         });
     });
 
     // API PUT Update a link
     server.put('/api/links/:id', function(request, response) {
         console.log('Updating link ' + request.body.title);
-        return LinkModel.findById(request.params.id, function(err, link) {
+        LinkModel.findById(request.params.id, function(err, link) {
             link.title = request.body.title;
             link.author = request.body.author;
             link.releaseDate = request.body.releaseDate;
             link.keywords = request.body.keywords;
 
-            return link.save(function(err) {
-                if (err) throw err;
+            link.save(function(err) {
+                if (err) {
+                    response.send(404);
+                    throw err;
+                }
                 console.log('link updated');
-                return response.send(link);
+                response.send(link);
             });
         });
     });
@@ -79,11 +91,14 @@ function linksAPI(server) {
     // API DELETE Delete a link
     server.delete('/api/links/:id', function(request, response) {
         console.log('Deleting link with id: ' + request.params.id);
-        return LinkModel.findById(request.params.id, function(err, link) {
-            return link.remove(function(err) {
-                if (err) throw err;
+        LinkModel.findById(request.params.id, function(err, link) {
+            link.remove(function(err) {
+                if (err) {
+                    response.send(404);
+                    throw err;
+                }
                 console.log('link removed');
-                return response.send('link removed');
+                response.send('link removed');
             });
         });
     });
