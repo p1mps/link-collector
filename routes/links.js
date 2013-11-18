@@ -61,12 +61,10 @@ function linksAPI(server) {
 
     // API PUT Update a link
     server.put('/api/links/:id', function(request, response) {
-        console.log('Updating link ' + request.body.title);
+        console.log('Updating link ' + request.body.url);
         return LinkModel.findById(request.params.id, function(err, link) {
-            link.title = request.body.title;
-            link.author = request.body.author;
-            link.releaseDate = request.body.releaseDate;
-            link.keywords = request.body.keywords;
+            link.url = request.body.url;
+            link.description = request.body.description;
 
             return link.save(function(err) {
                 if (err) throw err;

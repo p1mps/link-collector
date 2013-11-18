@@ -1,5 +1,5 @@
 var app = app || {};
-
+var asdf;
 app.LinkView = Backbone.View.extend({
 
     tagName: 'div',

@@ -2,10 +2,10 @@ var request = require('supertest'),
     assert = require('assert'),
     app = require('../app'),
     mongoose = require('mongoose'),
-    dburl = "mongodb://localhost:27017/link_db",
-    //automatic db cleaning
+    dburl = "mongodb://localhost:27017/link_db", //automatic db cleaning
     clearDB = require('mocha-mongoose')(dburl),
     LinkModel = mongoose.model('Link', app.Link),
+    linkbackbone = require('../public/js/models'),
     id;
 
 // #############################################################################
@@ -17,21 +17,17 @@ var request = require('supertest'),
 // Insert records before the tests
 beforeEach(function(done) {
 
-    console.log('Inserting data');
     mongoose.createConnection(dburl);
     //Models
     var link = new LinkModel({
         url: "url",
         description: "description"
     });
-
     link.save(function(err, model) {
-
         LinkModel.find({}, function(err, links) {
             if (err) return done(err);
             assert.equal(links.length, 1);
             id = links[0].id;
-            console.log(id);
         });
     });
 
@@ -81,6 +77,7 @@ describe('Server testing', function() {
                 .get('/api/links/' + id)
                 .end(function(err, res) {
                     assert.equal(err, null);
+                    assert.notEqual(res.body.lenght, 0);
                     console.log(res.body);
                     // Make sure there was no error
                     // Finish asynchronous test
@@ -89,6 +86,8 @@ describe('Server testing', function() {
         });
 
     });
+
+
 
 
 

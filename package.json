@@ -8,6 +8,9 @@
         "mongodb": "*",
         "mongoose": "*",
         "path": "*",
-        "backbone-validation": "*"
+        "backbone-validation": "*",
+        "supertest": "*",
+        "mocha": "*",
+        "mocha-mongoose": "*"
     }
 }
